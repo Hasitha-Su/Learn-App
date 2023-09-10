@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Learn App - MVVM</string>
+    <string name="course_information">Course Information</string>
+</resources>
