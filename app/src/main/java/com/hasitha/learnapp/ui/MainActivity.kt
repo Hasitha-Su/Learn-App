@@ -11,22 +11,22 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
 
+    @Inject
+    lateinit var courseRepository: CourseRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-        val repository = CourseRepository()
-
-        // Use Coroutines to perform the API call
-        CoroutineScope(Dispatchers.IO).launch {
-            repository.refreshData()
-        }
+            CoroutineScope(Dispatchers.IO).launch {
+                courseRepository.initializeDatabase()
+            }
 
         setContentView(R.layout.activity_main)
 

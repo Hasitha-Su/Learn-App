@@ -17,11 +17,11 @@ class MainViewModel @Inject constructor(
 
 ) : ViewModel() {
 
-    init {
-        viewModelScope.launch {
-            CourseRepository.refreshCourses()
-        }
-    }
+//    init {
+//        viewModelScope.launch {
+//            CourseRepository.refreshCourses()
+//        }
+//    }
 
     val courses: LiveData<List<Course>> = courseRepository.courses
 }

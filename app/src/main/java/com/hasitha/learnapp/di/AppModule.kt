@@ -6,6 +6,7 @@ import com.hasitha.learnapp.data.remote.ApiService
 import com.hasitha.learnapp.data.local.AppDatabase
 import com.hasitha.learnapp.data.local.CourseDao
 import com.hasitha.learnapp.data.local.LessonDao
+import com.hasitha.learnapp.data.local.QuizDao
 import com.hasitha.learnapp.data.local.TopicDao
 import com.hasitha.learnapp.repository.CourseRepository
 import dagger.Module
@@ -21,18 +22,13 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-//    @Provides
-//    @Singleton
-//    fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
-//        return Room.databaseBuilder(context, AppDatabase::class.java, "app_db").build()
-//    }
-
     @Provides
     @Singleton
     fun provideAppDatabase(@ApplicationContext appContext: Context): AppDatabase {
-        return Room.databaseBuilder(appContext, AppDatabase::class.java, "app_db")
-            .addCallback(AppDatabase.CALLBACK)
-            .build()
+        return Room.databaseBuilder(
+            appContext,
+            AppDatabase::class.java, "yourdatabase"
+        ).build()
     }
 
     @Provides
@@ -74,8 +70,9 @@ object AppModule {
         apiService: ApiService,
         courseDao: CourseDao,
         topicDao: TopicDao,
-        lessonDao: LessonDao
+        lessonDao: LessonDao,
+        quizDao: QuizDao
     ): CourseRepository {
-        return CourseRepository(apiService, courseDao, topicDao, lessonDao)
+        return CourseRepository(apiService, courseDao, topicDao, lessonDao, quizDao)
     }
 }
