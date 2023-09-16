@@ -7,7 +7,8 @@ import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "lessons",
-    foreignKeys = [ForeignKey(entity = Topic::class, parentColumns = ["id"], childColumns = ["topicId"], onDelete = ForeignKey.CASCADE)]
+    foreignKeys = [ForeignKey(entity = Topic::class, parentColumns = ["id"], childColumns = ["topicId"], onDelete = ForeignKey.CASCADE)],
+    indices = [Index(value = ["topicId"])]
 )
 data class Lesson(
     @PrimaryKey

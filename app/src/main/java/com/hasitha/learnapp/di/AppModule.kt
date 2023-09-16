@@ -2,21 +2,20 @@ package com.hasitha.learnapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.hasitha.learnapp.data.remote.ApiService
-import com.hasitha.learnapp.data.local.AppDatabase
-import com.hasitha.learnapp.data.local.CourseDao
-import com.hasitha.learnapp.data.local.LessonDao
-import com.hasitha.learnapp.data.local.QuizDao
-import com.hasitha.learnapp.data.local.TopicDao
-import com.hasitha.learnapp.repository.CourseRepository
 import dagger.Module
+import retrofit2.Retrofit
+import javax.inject.Singleton
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
+import com.hasitha.learnapp.data.local.CourseDao
+import com.hasitha.learnapp.data.local.LessonDao
+import com.hasitha.learnapp.data.local.TopicDao
+import com.hasitha.learnapp.data.remote.ApiService
+import com.hasitha.learnapp.data.local.AppDatabase
 import dagger.hilt.components.SingletonComponent
-import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
+import com.hasitha.learnapp.repository.CourseRepository
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -27,7 +26,7 @@ object AppModule {
     fun provideAppDatabase(@ApplicationContext appContext: Context): AppDatabase {
         return Room.databaseBuilder(
             appContext,
-            AppDatabase::class.java, "yourdatabase"
+            AppDatabase::class.java, "MyDB"
         ).build()
     }
 
@@ -71,8 +70,7 @@ object AppModule {
         courseDao: CourseDao,
         topicDao: TopicDao,
         lessonDao: LessonDao,
-        quizDao: QuizDao
     ): CourseRepository {
-        return CourseRepository(apiService, courseDao, topicDao, lessonDao, quizDao)
+        return CourseRepository(apiService, courseDao, topicDao, lessonDao)
     }
 }

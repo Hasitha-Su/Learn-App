@@ -13,6 +13,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * Main Activity of the LearnApp.
+ *
+ * This activity is the entry point of the application. It sets up the navigation
+ * and is responsible for managing the lifecycle of the app.
+ *
+ * @property viewModel The ViewModel associated with this activity for MVVM architecture.
+ */
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
