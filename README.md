@@ -18,10 +18,6 @@ LearnApp is an Android application built to provide a smooth learning experience
 1. **Clone the Repository**
 
 2. **Navigate to the project directory and build the project**
-    ```bash
-    cd LearnApp
-    ./gradlew build
-    ```
 
 3. **Run the app on an Android Emulator or physical device.**
 
